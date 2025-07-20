@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>purlics games</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #000000;
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            width: 350px;
+            height: 75px;
+            object-fit: contain;
+        }
+
+        .games-button {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid #333;
+            padding: 12px 24px;
+            color: #ffffff;
+            text-decoration: none;
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .games-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: #666;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+        }
+
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .main-logo {
+            width: 400px;
+            height: 85px;
+            object-fit: contain;
+            margin-bottom: 30px;
+            filter: brightness(1.1);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            color: #cccccc;
+            letter-spacing: 1px;
+        }
+
+        .search-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 1.1rem;
+            font-family: 'Courier New', monospace;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid #333;
+            border-radius: 8px;
+            color: #ffffff;
+            outline: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .search-bar::placeholder {
+            color: #888;
+        }
+
+        .search-bar:focus {
+            border-color: #666;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .search-button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #333;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            color: #fff;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-button:hover {
+            background: #555;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .logo {
+                width: 280px;
+                height: 60px;
+            }
+            
+            .main-logo {
+                width: 320px;
+                height: 68px;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .search-bar {
+                font-size: 1rem;
+                padding: 12px 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 15px;
+            }
+            
+            .logo {
+                width: 240px;
+                height: 51px;
+            }
+            
+            .main-logo {
+                width: 280px;
+                height: 60px;
+            }
+            
+            .main-container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    
+    <header class="header">
+        <img src="/images/icon.png" alt="Purlics Games" class="logo">
+        <a href="games.html" class="games-button">games</a>
+    </header>
+
+    <main class="main-container">
+        <img src="/images/icon.png" alt="Purlics Games" class="main-logo">
+        <p class="subtitle">a game site ran by dorker.</p>
+        <div class="search-container">
+            <input type="text" class="search-bar" placeholder="search for games..." id="searchInput">
+            <button class="search-button" onclick="searchGames()">search</button>
+        </div>
+    </main>
+
+    <footer class="footer">
+        purlics games © 2025
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Initialize particles.js
+        particlesJS('particles-js', {
+            particles: {
+                number: {
+                    value: 80,
+                    density: {
+                        enable: true,
+                        value_area: 800
+                    }
+                },
+                color: {
+                    value: "#ffffff"
+                },
+                shape: {
+                    type: "circle",
+                    stroke: {
+                        width: 0,
+                        color: "#000000"
+                    }
+                },
+                opacity: {
+                    value: 0.5,
+                    random: false,
+                    anim: {
+                        enable: false,
+                        speed: 1,
+                        opacity_min: 0.1,
+                        sync: false
+                    }
+                },
+                size: {
+                    value: 3,
+                    random: true,
+                    anim: {
+                        enable: false,
+                        speed: 40,
+                        size_min: 0.1,
+                        sync: false
+                    }
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#ffffff",
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 6,
+                    direction: "none",
+                    random: false,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false,
+                    attract: {
+                        enable: false,
+                        rotateX: 600,
+                        rotateY: 1200
+                    }
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: {
+                        enable: true,
+                        mode: "repulse"
+                    },
+                    onclick: {
+                        enable: true,
+                        mode: "push"
+                    },
+                    resize: true
+                },
+                modes: {
+                    grab: {
+                        distance: 400,
+                        line_linked: {
+                            opacity: 1
+                        }
+                    },
+                    bubble: {
+                        distance: 400,
+                        size: 40,
+                        duration: 2,
+                        opacity: 8,
+                        speed: 3
+                    },
+                    repulse: {
+                        distance: 200,
+                        duration: 0.4
+                    },
+                    push: {
+                        particles_nb: 4
+                    },
+                    remove: {
+                        particles_nb: 2
+                    }
+                }
+            },
+            retina_detect: true
+        });
+
+        // Search functionality
+        function searchGames() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            if (searchTerm.trim()) {
+                // Placeholder for search functionality
+                alert(`searching for: "${searchTerm}"`);
+                // Here you would implement actual search logic
+            }
+        }
+
+        // Allow Enter key to trigger search
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchGames();
+            }
+        });
+
+        // Add some interactive effects
+        document.addEventListener('mousemove', function(e) {
+            const searchBar = document.querySelector('.search-bar');
+            const rect = searchBar.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            const distance = Math.sqrt(Math.pow(e.clientX - centerX, 2) + Math.pow(e.clientY - centerY, 2));
+            
+            if (distance < 200) {
+                const intensity = (200 - distance) / 200;
+                searchBar.style.boxShadow = `0 0 ${20 * intensity}px rgba(255, 255, 255, ${0.2 * intensity})`;
+            } else {
+                searchBar.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
