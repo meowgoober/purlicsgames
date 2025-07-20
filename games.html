@@ -46,9 +46,15 @@
             width: 350px;
             height: 75px;
             object-fit: contain;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .home-button {
+        .logo:hover {
+            filter: brightness(1.2);
+        }
+
+        .games-button {
             background: rgba(255, 255, 255, 0.1);
             border: 2px solid #333;
             padding: 12px 24px;
@@ -61,7 +67,7 @@
             backdrop-filter: blur(5px);
         }
 
-        .home-button:hover {
+        .games-button:hover {
             background: rgba(255, 255, 255, 0.2);
             border-color: #666;
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
@@ -221,8 +227,8 @@
     <div id="particles-js"></div>
     
     <header class="header">
-        <img src="/images/icon.png" alt="Purlics Games" class="logo">
-        <a href="index.html" class="home-button">home</a>
+        <img src="/images/icon.png" alt="Purlics Games" class="logo" onclick="goHome()">
+        <a href="games.html" class="games-button">games</a>
     </header>
 
     <main class="main-container">
@@ -235,7 +241,7 @@
         <div class="games-grid" id="gamesGrid">
             <div class="game-card" onclick="playGame('games/btd1/index.html')">
                 <img src="images/games/btd1.png" alt="BTD1" class="game-icon">
-                <div class="game-name">btd1</div>
+                <div class="game-name">BTD1</div>
                 <a href="games/btd1/index.html" class="play-button">play now</a>
             </div>
         </div>
@@ -309,6 +315,11 @@
             },
             retina_detect: true
         });
+
+        // Go home function
+        function goHome() {
+            window.location.href = 'index.html';
+        }
 
         // Game search functionality
         document.getElementById('gameSearchInput').addEventListener('input', function(e) {
